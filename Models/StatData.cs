@@ -1,6 +1,6 @@
 ﻿namespace Pixelstats.Models
 {
-    public class Stats
+    public class StatData
     {
         public int Id { get; set; }
         public float Time { get; set; }
