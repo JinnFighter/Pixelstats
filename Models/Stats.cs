@@ -2,6 +2,7 @@
 {
     public class Stats
     {
+        public int Id { get; set; }
         public float Time { get; set; }
         public int CorrectAnswers { get; set; }
         public int WrongAnswers { get; set; }
