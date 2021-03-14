@@ -58,6 +58,12 @@ namespace Pixelstats
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                DbObject.Init(context);
+            }
         }
     }
 }
