@@ -10,7 +10,7 @@ using Pixelstats;
 namespace Pixelstats.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210314103320_Stats")]
+    [Migration("20210314114242_Stats")]
     partial class Stats
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
