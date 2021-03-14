@@ -1,0 +1,10 @@
+﻿@model StatsListViewModel
+
+<div class="row mt-5 mb-2">
+    @{
+        foreach (StatDataViewModel viewModel in Model.Stats)
+        {
+            <partial name="Shared/_StatDataPartial.cshtml" for=@viewModel />
+        }
+      }
+</div>
