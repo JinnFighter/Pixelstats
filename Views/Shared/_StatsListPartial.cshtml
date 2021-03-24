@@ -1,0 +1,10 @@
+﻿@model IEnumerable<StatDataViewModel>
+
+<div class="row mt-5 mb-2">
+    @{
+        foreach (StatDataViewModel viewModel in Model)
+        {
+            <partial name="_StatDataPartial.cshtml" for=@viewModel />
+        }
+      }
+</div>

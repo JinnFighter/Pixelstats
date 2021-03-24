@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pixelstats;
 
 namespace Pixelstats.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210314114116_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,69 +152,6 @@ namespace Pixelstats.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Pixelstats.Models.GameMode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("StatsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StatsId");
-
-                    b.ToTable("GameModes");
-                });
-
-            modelBuilder.Entity("Pixelstats.Models.StatData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CorrectAnswers")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GameModeId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Time")
-                        .HasColumnType("real");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("WrongAnswers")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameModeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("StatDatas");
-                });
-
-            modelBuilder.Entity("Pixelstats.Models.Stats", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Statistics");
-                });
-
             modelBuilder.Entity("Pixelstats.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -330,24 +269,6 @@ namespace Pixelstats.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Pixelstats.Models.GameMode", b =>
-                {
-                    b.HasOne("Pixelstats.Models.Stats", null)
-                        .WithMany("GameModes")
-                        .HasForeignKey("StatsId");
-                });
-
-            modelBuilder.Entity("Pixelstats.Models.StatData", b =>
-                {
-                    b.HasOne("Pixelstats.Models.GameMode", "GameMode")
-                        .WithMany("StatDatas")
-                        .HasForeignKey("GameModeId");
-
-                    b.HasOne("Pixelstats.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

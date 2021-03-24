@@ -10,8 +10,8 @@ using Pixelstats;
 namespace Pixelstats.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210313160111_Initial")]
-    partial class Initial
+    [Migration("20210314114242_Stats")]
+    partial class Stats
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,32 @@ namespace Pixelstats.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Pixelstats.Models.Stats", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CorrectAnswers")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Time")
+                        .HasColumnType("real");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WrongAnswers")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Stats");
+                });
+
             modelBuilder.Entity("Pixelstats.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -269,6 +295,13 @@ namespace Pixelstats.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Pixelstats.Models.Stats", b =>
+                {
+                    b.HasOne("Pixelstats.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

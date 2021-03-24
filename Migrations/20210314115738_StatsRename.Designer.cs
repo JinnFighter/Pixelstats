@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pixelstats;
 
 namespace Pixelstats.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210314115738_StatsRename")]
+    partial class StatsRename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,12 +162,7 @@ namespace Pixelstats.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StatsId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("StatsId");
 
                     b.ToTable("GameModes");
                 });
@@ -199,18 +196,6 @@ namespace Pixelstats.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("StatDatas");
-                });
-
-            modelBuilder.Entity("Pixelstats.Models.Stats", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Statistics");
                 });
 
             modelBuilder.Entity("Pixelstats.Models.User", b =>
@@ -330,13 +315,6 @@ namespace Pixelstats.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Pixelstats.Models.GameMode", b =>
-                {
-                    b.HasOne("Pixelstats.Models.Stats", null)
-                        .WithMany("GameModes")
-                        .HasForeignKey("StatsId");
                 });
 
             modelBuilder.Entity("Pixelstats.Models.StatData", b =>

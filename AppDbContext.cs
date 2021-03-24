@@ -8,7 +8,11 @@ namespace Pixelstats
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+
         }
+
+        public DbSet<StatData> StatDatas { get; set; }
+        public DbSet<GameMode> GameModes { get; set; }
+        public DbSet<Stats> Statistics { get; set; }
     }
 }
