@@ -1,10 +1,10 @@
-﻿@model StatsListViewModel
+﻿@model IEnumerable<StatDataViewModel>
 
 <div class="row mt-5 mb-2">
     @{
-        foreach (StatDataViewModel viewModel in Model.Stats)
+        foreach (StatDataViewModel viewModel in Model)
         {
-            <partial name="Shared/_StatDataPartial.cshtml" for=@viewModel />
+            <partial name="_StatDataPartial.cshtml" for=@viewModel />
         }
       }
 </div>

@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pixelstats.Data.Interfaces;
+using Pixelstats.Data.Repositories;
 using Pixelstats.Models;
 
 namespace Pixelstats
@@ -27,6 +29,7 @@ namespace Pixelstats
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).
                 AddDefaultUI().AddDefaultTokenProviders().
                 AddEntityFrameworkStores<AppDbContext>();
+            services.AddTransient<IGetStats, StatsRepository>();
             services.AddControllersWithViews();
         }
 

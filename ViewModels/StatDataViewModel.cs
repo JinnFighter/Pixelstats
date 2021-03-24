@@ -6,6 +6,6 @@
         public string Time { get; set; }
         public uint CorrectAnswers { get; set; }
         public uint WrongAnswers { get; set; }
-        public byte SuccessRate { get; set; }
+        public int SuccessRate { get; set; }
     }
 }

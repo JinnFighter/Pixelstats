@@ -1,4 +1,5 @@
 ﻿using Pixelstats.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,32 +12,34 @@ namespace Pixelstats
             public static void Init(AppDbContext context)
             {
                 User user;
-                if(!context.Users.Any())
+                if(context.Users.Any())
                 {
-                    user = new User { StudyGroup = "Mosm-191" };
-                    context.Users.Add(user);
+                    user = context.Users.First(user => user.UserName == "test");
                 }
                 else
                 {
-                    user = context.Users.First(user => user.StudyGroup == "Mosm-191");
+                    user = new User { StudyGroup = "Mosm-191", UserName = "test" };
+                    context.Users.Add(user);
                 }
                 if (!context.GameModes.Any())
                         context.GameModes.AddRange(GameModes.Select(category => category.Value));
 
                 if (!context.StatDatas.Any())
-                    context.StatDatas.AddRange(new List<StatData>
+            {
+                var data = new List<StatData>
                 {
                     new StatData
                     {
                         Time = 30f,
                         CorrectAnswers = 5,
                         WrongAnswers = 10,
-
                         GameMode = GameModes["Brezenheim"],
                         User = user
-                    }
-                });
+                    } 
+                };
 
+                context.StatDatas.AddRange(data);
+            }
                 context.SaveChanges();
             }
 
@@ -48,7 +51,7 @@ namespace Pixelstats
                     {
                         var gameModes = new List<GameMode>
                         {
-                            new GameMode{Name = "Brezenheim", StatDatas = new List<StatData>()}
+                            new GameMode{Name = "Brezenheim"}
                         };
                         _gameModes = new Dictionary<string, GameMode>();
                         foreach (var gameMode in gameModes)
