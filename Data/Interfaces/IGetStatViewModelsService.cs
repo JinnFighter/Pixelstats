@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Pixelstats.Data.Interfaces
 {
-    interface IGetStatViewModelsService
+    public interface IGetStatViewModelsService
     {
         IEnumerable<StatDataViewModel> GetViewModels(IEnumerable<StatData> datas);
     }
