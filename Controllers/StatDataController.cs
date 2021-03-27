@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pixelstats.Data.Interfaces;
-using Pixelstats.Data.Services;
 using System.Linq;
 
 namespace Pixelstats.Controllers
@@ -10,10 +9,10 @@ namespace Pixelstats.Controllers
         private readonly IGetStats _stats;
         private readonly IGetStatViewModelsService _viewModelService;
 
-        public StatDataController(IGetStats stats)
+        public StatDataController(IGetStats stats, IGetStatViewModelsService viewModelService)
         {
             _stats = stats;
-            _viewModelService = new GetStatViewModelsService();
+            _viewModelService = viewModelService;
         }
 
         public IActionResult Index(string name)
