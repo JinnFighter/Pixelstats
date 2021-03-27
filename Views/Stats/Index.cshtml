@@ -1,1 +1,5 @@
-﻿@ViewBag.Title
+﻿@model StatsViewModel
+
+@ViewBag.Title
+
+<partial name="_StatsListPartial" for="@Model.StatList.Stats" />
