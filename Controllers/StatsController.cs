@@ -18,11 +18,8 @@ namespace Pixelstats.Controllers
             _statViewModelService = service;
         }
 
-        public IActionResult Index()
-        {
-            var user = _users.GetUsers().First();
-            var userName = user.UserName;
-            
+        public IActionResult Index(string userName)
+        {            
             var stats = _statDatas.GetStats.Where(statData => statData.User.UserName == userName);
             var viewModel = new StatsViewModel
             {
