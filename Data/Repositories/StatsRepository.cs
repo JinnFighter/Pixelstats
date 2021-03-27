@@ -14,6 +14,6 @@ namespace Pixelstats.Data.Repositories
             _context = context;
         }
 
-        public IEnumerable<StatData> GetStats => _context.StatDatas.Include(statData => statData.GameMode);
+        public IEnumerable<StatData> GetStats => _context.StatDatas.Include(statData => statData.GameMode).Include(statData => statData.User);
     }
 }
