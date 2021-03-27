@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<StatDataViewModel>
 
-<div class="row mt-5 mb-2">
+<div class="list-group">
     @{
         foreach (StatDataViewModel viewModel in Model)
         {
+        <div class="list-group-item flex-column align-items-lg-start">
             <partial name="_StatDataPartial.cshtml" for=@viewModel />
+        </div>
         }
       }
 </div>

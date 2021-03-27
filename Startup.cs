@@ -60,6 +60,11 @@ namespace Pixelstats
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "GamesHistory",
+                    pattern: "games/{name}",
+                    defaults: new {controller = "StatData", action = "Index"}
+                    );
             });
 
             using (var scope = app.ApplicationServices.CreateScope())
