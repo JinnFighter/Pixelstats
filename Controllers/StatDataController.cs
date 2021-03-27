@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pixelstats.Data.Interfaces;
 using Pixelstats.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Pixelstats.Controllers
 {
