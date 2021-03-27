@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pixelstats.Data.Interfaces;
 using Pixelstats.Data.Repositories;
+using Pixelstats.Data.Services;
 using Pixelstats.Models;
 
 namespace Pixelstats
@@ -30,6 +31,8 @@ namespace Pixelstats
                 AddDefaultUI().AddDefaultTokenProviders().
                 AddEntityFrameworkStores<AppDbContext>();
             services.AddTransient<IGetStats, StatsRepository>();
+            services.AddTransient<IGetUsers, UserRepository>();
+            services.AddTransient<IGetStatViewModelsService, GetStatViewModelsService>();
             services.AddControllersWithViews();
         }
 
