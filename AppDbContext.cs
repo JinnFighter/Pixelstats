@@ -13,6 +13,5 @@ namespace Pixelstats
 
         public DbSet<StatData> StatDatas { get; set; }
         public DbSet<GameMode> GameModes { get; set; }
-        public DbSet<Stats> Statistics { get; set; }
     }
 }
