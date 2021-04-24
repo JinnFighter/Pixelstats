@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Pixelstats.Data.Interfaces;
 using Pixelstats.Models;
 using System.Collections.Generic;
 
@@ -10,6 +11,12 @@ namespace Pixelstats.Controllers
     [ApiController]
     public class StatsApiController : ControllerBase
     {
+        private readonly IGetUsers _usersRepository;
+
+        public StatsApiController(IGetUsers userRepository)
+        {
+            _usersRepository = userRepository;
+        }
         // GET: api/<StatsApiController>
         [HttpGet]
         public IEnumerable<ApiData> Get()
