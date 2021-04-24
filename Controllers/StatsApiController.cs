@@ -44,19 +44,7 @@ namespace Pixelstats.Controllers
 
         // POST api/<StatsApiController>
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<StatsApiController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<StatsApiController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Post([FromBody] ApiData value)
         {
         }
     }
