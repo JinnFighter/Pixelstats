@@ -33,6 +33,7 @@ namespace Pixelstats
             services.AddTransient<IGetStats, StatsRepository>();
             services.AddTransient<IStatUpdater, StatsRepository>();
             services.AddTransient<IGetUsers, UserRepository>();
+            services.AddTransient<IGetGameModes, GameModesRepository>();
             services.AddTransient<IGetStatViewModelsService, GetStatViewModelsService>();
             services.AddControllersWithViews();
         }
