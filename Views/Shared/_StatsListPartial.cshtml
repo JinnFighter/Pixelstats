@@ -1,12 +1,23 @@
 ﻿@model IEnumerable<StatDataViewModel>
 
-<div class="list-group">
-    @{
-        foreach (StatDataViewModel viewModel in Model)
-        {
-        <div class="list-group-item flex-column align-items-lg-start">
-            <partial name="_StatDataPartial.cshtml" for=@viewModel />
-        </div>
-        }
-      }
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Режим</th>
+            <th scope="col">Время</th>
+            <th scope="col">Верные ответы</th>
+            <th scope="col">Неверные ответы</th>
+            <th scope="col">Соотношение</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (StatDataViewModel viewModel in Model)
+            {
+                <tr>
+                    <partial name="_StatDataPartial.cshtml" for=@viewModel />
+                </tr>
+            } 
+         }
+    </tbody>
+</table>
