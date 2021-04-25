@@ -21,5 +21,12 @@ namespace Pixelstats.Controllers
             var viewModels = _viewModelService.GetViewModels(stats);
             return View(viewModels);
         }
+
+        public IActionResult Game(int id)
+        {
+            var statData = _stats.GetStats.FirstOrDefault(stat => stat.Id == id);
+
+            return View();
+        }
     }
 }
