@@ -15,44 +15,35 @@ namespace Pixelstats.Controllers
         private readonly IGetUsers _usersRepository;
         private readonly IGetGameModes _gameModesRepository;
         private readonly IStatUpdater _statUpdater;
+        private readonly IGetStats _statsRepository;
 
-        public StatsApiController(IGetUsers userRepository, IGetGameModes gameModesRepository, IStatUpdater statUpdater)
+        public StatsApiController(IGetUsers userRepository, IGetGameModes gameModesRepository, IStatUpdater statUpdater, IGetStats statsRepository)
         {
             _usersRepository = userRepository;
             _gameModesRepository = gameModesRepository;
             _statUpdater = statUpdater;
+            _statsRepository = statsRepository;
         }
 
-        // GET: api/<StatsApiController>
-        [HttpGet]
-        public IEnumerable<ApiData> Get()
+        // GET api/<StatsApiController>/name
+        [HttpGet("{name}")]
+        public IEnumerable<ApiData> Get(string name)
         {
-            return new List<ApiData>
+            var res = new List<ApiData>();
+
+            foreach(var statData in _statsRepository.GetStats.Where(statData => statData.User.UserName == name))
             {
-                new ApiData
+                res.Add(new ApiData
                 {
-                    PlayerName = "test",
-                    GameModeName = "testMode",
-                    Time = 30f,
-                    CorrectAnswers = 1,
-                    WrongAnswers = 2
-                }
-            };
-        }
+                    PlayerName = name,
+                    GameModeName = statData.GameMode.Name,
+                    Time = statData.Time,
+                    CorrectAnswers = statData.CorrectAnswers,
+                    WrongAnswers = statData.WrongAnswers
+                });
+            }
 
-        // GET api/<StatsApiController>/5
-        [HttpGet("{id}")]
-        public ApiData Get(int id)
-        {
-            return
-                new ApiData
-                {
-                    PlayerName = "test",
-                    GameModeName = "testMode",
-                    Time = 30f,
-                    CorrectAnswers = 1,
-                    WrongAnswers = 2
-            };
+            return res;
         }
 
         // POST api/<StatsApiController>
