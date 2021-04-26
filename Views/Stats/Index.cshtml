@@ -1,5 +1,16 @@
 ﻿@model StatsViewModel
 
-@ViewBag.Title
+<div class="container">
+    <p>Пользователь: @ViewBag.Title</p>
+    <p>Группа: @ViewBag.Group</p>
+</div>
 
-<partial name="_StatsListPartial" for="@Model.StatList.Stats" />
+
+<div class="container">
+    <partial name="_BestStatsPartial" for="@Model.BestStats" />
+</div>
+
+<div class="container">
+    <partial name="_StatsListPartial" for="@Model.StatList.Stats" />
+</div>
+
