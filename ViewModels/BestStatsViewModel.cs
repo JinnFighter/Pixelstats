@@ -4,6 +4,6 @@
     {
         public int BestPercentage { get; set; }
         public int BestRating { get; set; }
-        public int BestMode { get; set; }
+        public string BestMode { get; set; }
     }
 }
