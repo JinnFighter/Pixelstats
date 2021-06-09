@@ -17,7 +17,8 @@ namespace Pixelstats.Controllers
         private readonly IStatUpdater _statUpdater;
         private readonly IGetStats _statsRepository;
 
-        public StatsApiController(IGetUsers userRepository, IGetGameModes gameModesRepository, IStatUpdater statUpdater, IGetStats statsRepository)
+        public StatsApiController(IGetUsers userRepository, IGetGameModes gameModesRepository,
+            IStatUpdater statUpdater, IGetStats statsRepository)
         {
             _usersRepository = userRepository;
             _gameModesRepository = gameModesRepository;
@@ -54,7 +55,8 @@ namespace Pixelstats.Controllers
                 _gameModesRepository.GetGameModes().Any(gameMode => gameMode.Name == value.GameModeName))
             {
                 var user = _usersRepository.GetUsers().FirstOrDefault(user => user.UserName == value.PlayerName);
-                var gameMode = _gameModesRepository.GetGameModes().FirstOrDefault(gameMode => gameMode.Name == value.GameModeName);
+                var gameMode = _gameModesRepository.GetGameModes().FirstOrDefault(gameMode =>
+                    gameMode.Name == value.GameModeName);
 
                 var statData = new StatData
                 {

@@ -24,12 +24,14 @@ namespace Pixelstats.Controllers
             var stats = _statDatas.GetStats.Where(statData => statData.User == user);
 
 
-            var best = stats.OrderBy(stat => stat.WrongAnswers == 0 ? 0 : (int)((double)stat.CorrectAnswers / (double)(stat.CorrectAnswers + stat.WrongAnswers) * 100)).First();
+            var best = stats.OrderBy(stat => stat.WrongAnswers == 0 ? 0
+            : (int)((double)stat.CorrectAnswers / (double)(stat.CorrectAnswers + stat.WrongAnswers) * 100)).First();
             var bestStats = new BestStatsViewModel
             {
                 BestRating = 3,
                 BestMode = best.GameMode.Name,
-                BestPercentage = best.WrongAnswers == 0 ? 0 : (int)((double)best.CorrectAnswers / (double)(best.CorrectAnswers + best.WrongAnswers) * 100)
+                BestPercentage = best.WrongAnswers == 0 ? 0 : 
+                (int)((double)best.CorrectAnswers / (double)(best.CorrectAnswers + best.WrongAnswers) * 100)
 
             };
             var viewModel = new StatsViewModel
