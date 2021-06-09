@@ -51,7 +51,11 @@ namespace Pixelstats
                     {
                         var gameModes = new List<GameMode>
                         {
-                            new GameMode{Name = "Brezenheim"}
+                            new GameMode{Name = "Brezenheim"},
+                            new GameMode{Name = "MultipleBrezenheim"},
+                            new GameMode{Name = "Bezier"},
+                            new GameMode{Name = "SouthCohen"},
+                            new GameMode{Name = "Turtle"}
                         };
                         _gameModes = new Dictionary<string, GameMode>();
                         foreach (var gameMode in gameModes)
